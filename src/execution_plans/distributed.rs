@@ -280,6 +280,11 @@ impl CoordinatorToWorkerTaskBuilder {
 
     /// Instantiates and returns the task sends a serialized plan to specific worker. The returned
     /// task is just a future that does nothing unless polled.
+    ///
+    /// It additionally returns a mpsc channel that further code can use to push more
+    /// [CoordinatorToWorkerMsg] messages to the coordinator->worker gRPC channel, which is used
+    /// for streaming further partition feeds in case [WorkUnitFeedExec] nodes where present in
+    /// the stage.
     fn send_plan_task(
         &self,
         ctx: Arc<TaskContext>,
