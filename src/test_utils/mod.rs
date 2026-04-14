@@ -9,5 +9,6 @@ pub mod parquet;
 pub mod plans;
 pub mod property_based;
 pub mod session_context;
+pub mod test_work_unit_feed;
 pub mod tpcds;
 pub mod tpch;
